@@ -1,11 +1,25 @@
-import { Link } from "react-router-dom";
+import { CartToggle } from "./CartToggle";
+import { ShoppingCart } from "./ShoppingCart";
+import { CartItem } from "../utils/types";
 
-export function Header() {
+type Props = {
+  toggleCart: () => void;
+  cart: CartItem[];
+  isCartVisible: boolean;
+};
+
+export function Header({ cart, toggleCart, isCartVisible }: Props) {
   return (
-    <header className="flex gap-3 border-b border-zinc-800">
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-      <Link to="/blog">Blog</Link>
+    <header className="shadow-md py-4 px-6 flex justify-between">
+      <h1 className="text-xl font-bold">Wacky Wonders Emporium</h1>
+      <div className="relative">
+        <CartToggle
+          toggleCart={toggleCart}
+          isCartVisible={isCartVisible}
+          cartItems={cart}
+        />
+        {isCartVisible ? <ShoppingCart cartItems={cart} /> : null}
+      </div>
     </header>
   );
 }
