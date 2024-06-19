@@ -26,17 +26,16 @@ export function RootLayout() {
   }
 
   return (
-    <div className="flex h-screen">
-      <aside className="h-full bg-red-600 w-52">Sidebar</aside>
-      <main>
-        <Header
-          toggleCart={toggleCart}
-          cart={cart}
-          isCartVisible={isCartVisible}
-        />
-        {/* Page */}
-        <Outlet />
-      </main>
-    </div>
+    <>
+      <Header
+        toggleCart={toggleCart}
+        cart={cart}
+        isCartVisible={isCartVisible}
+      />
+      {/* Page */}
+      <div className="px-4 py-8">
+        <Outlet context={{ addToCart }} />
+      </div>
+    </>
   );
 }
